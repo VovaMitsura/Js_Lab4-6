@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<form id="test-from" class="test" method="post" enctype="multipart/form-data">
+    <div class="display-container">
+        <div class="header">
+            <input type="text" id="fullName" class="form-input" placeholder="Full name" required="required"/>
+            <input type="text" id="group" class="form-input" placeholder="group" required="required"/>
+        </div>
+        <div id="test1">
+            <div id="ans1">
+                <input type="radio" name="option1" id="choose0"/>
+            </div>
+            <div id="ans2">
+                <input type="radio" name="option1" id="choose1"/>
+            </div>
+            <div id="ans3">
+                <input type="radio" name="option1" id="choose2"/>
+            </div>
+        </div>
+        <div id="test2">
+            <div id="ans4">
+                <input type="radio" name="option2" id="choose3"/>
+            </div>
+            <div id="ans5">
+                <input type="radio" name="option2" id="choose4"/>
+            </div>
+            <div id="ans6">
+                <input type="radio" name="option2" id="choose5"/>
+            </div>
+        </div>
+        <div id="test3">
+            <div id="ans7">
+                <input type="radio" name="option3" id="choose6"/>
+            </div>
+            <div id="ans8">
+                <input type="radio" name="option3" id="choose7"/>
+            </div>
+            <div id="ans9">
+                <input type="radio" name="option3" id="choose8"/>
+            </div>
+        </div>
+        <div id="test4">
+            <div id="ans10">
+                <input type="checkbox" id="choose9"/>
+            </div>
+            <div id="ans11">
+                <input type="checkbox" id="choose10"/>
+            </div>
+            <div id="ans12">
+                <input type="checkbox" id="choose11"/>
+            </div>
+        </div>
+        <div id="test5">
+            <div id="ans13">
+                <input type="checkbox" id="choose12"/>
+            </div>
+            <div id="ans14">
+                <input type="checkbox" id="choose13"/>
+            </div>
+            <div id="ans15">
+                <input type="checkbox" id="choose14"/>
+            </div>
+        </div>
+        <div id="test6">
+            <select id="option1">
+                <div id="ans16">
+                    <option id="choose15"></option>
+                </div>
+                <div id="ans17">
+                    <option id="choose16"></option>
+                </div>
+                <div id="ans18">
+                    <option id="choose17"></option>
+                </div>
+            </select>
+        </div>
+        <div id="test7">
+            <select id="option2">
+                <div id="ans19">
+                    <option id="choose18"></option>
+                </div>
+                <div id="ans20">
+                    <option id="choose19"></option>
+                </div>
+                <div id="ans21">
+                    <option id="choose20"></option>
+                </div>
+            </select>
+        </div>
+        <div id="test8">
+            <div id=field1>
+                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+            <br>
+            <img id="drag1" src="static/Less.png" draggable="true" ondragstart="drag(event)" width="225" , height="65"
+                 value="value1"/>
+            <img id="drag2" src="static/Sass.png" draggable="true" ondragstart="drag(event)" width="225" , height="65"
+                 value="value2"/>
+        </div>
+        <div id="test9">
+            <div id="field2">
+                <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+            <br>
+            <img id="drag3" src="static/LessSymbol.jpg" draggable="true" ondragstart="drag(event)" width="225" ,
+                 height="65"
+                 value="value3"/>
+            <img id="drag4" src="static/SassSymbol.jpg" draggable="true" ondragstart="drag(event)" width="225" ,
+                 height="65"
+                 value="value4"/>
+        </div>
+        <div id="test10">
+            <textarea id="text-area" rows="10" cols="65" maxlength="50"></textarea>
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="button" onclick="displayResult()">Result</button>
+        <button type="button" onclick="sendTelegram(event)">Send to Telegram</button>
+        <button type="button" id="send-btn" onclick="sendEmail(event)">Send to Email</button>
+    </div>
+</form>
+<div class="score">
+</div>
+<script src="scripts/script.js"></script>
+<script src="scripts/sendMail.js"></script>
+<script src="scripts/dragAndDrop.js"></script>
+<script src="scripts/sendTelegram.js"></script>
+</body>
+</html>

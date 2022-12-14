@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0
+}
+
+body {
+    background-color: #0a69ed;
+}
+
+.header {
+    margin: 1.3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.display-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.test {
+    color: white;
+    border: 1px solid black;
+}
+
+#test8, #test9{
+    margin-top: 1.3em;
+    margin-bottom: 1.3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#field1, #field2{
+    display: flex;
+    flex-direction: row;
+}
+
+#div1, #div2, #div3, #div4 {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
