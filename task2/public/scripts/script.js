@@ -1,3 +1,4 @@
+//get elements
 let test1 = document.getElementById("test1");
 let test2 = document.getElementById("test2");
 let test3 = document.getElementById("test3");
@@ -29,8 +30,10 @@ let ans18 = document.getElementById("ans18");
 let ans19 = document.getElementById("ans19");
 let ans20 = document.getElementById("ans20");
 let ans21 = document.getElementById("ans21");
+let fullName = document.getElementById("fullName");
+let group = document.getElementById("group");
 
-
+//quiz array for radio
 const quizRadioQuestionAndAnswer = [{
     id: "0",
     question: "CSS препроцесор – це",
@@ -49,6 +52,7 @@ const quizRadioQuestionAndAnswer = [{
     correct: "@extend забезпечує простий спосіб дозволити селектору успадкувати стилі іншого"
 }];
 
+//quiz array for checkBox
 const quizCheckBoxQuestionAndAnswer = [{
     id: "4",
     question: "Які функції кольорових каналів використовуються в LESS?",
@@ -62,6 +66,7 @@ const quizCheckBoxQuestionAndAnswer = [{
     correct: ["Sass кодується в Ruby і, таким чином, обробляється на стороні сервера", "LESS використовує JavaScript і обробляється на стороні клієнта"]
 }];
 
+//quiz array for options
 const quizOptionQuestionAndAnswer = [{
     id: "6",
     question: "Як можна використовувати LESS?",
@@ -75,6 +80,7 @@ const quizOptionQuestionAndAnswer = [{
     correct: "Параметр вказує на те, що ми повинні включити всі файли CSS у вихідну карту"
 }];
 
+//quiz array for drag and drop
 const quizDragAndDropQuestionAndAnswer = [{
     id: "8",
     question: ["Перетягність лого Sass", "Перетягність лого Less"],
@@ -85,19 +91,22 @@ const quizDragAndDropQuestionAndAnswer = [{
     correct: ["value3", "value4"]
 }];
 
+//quiz array for text area
 const quizTextAreaQuestionAndAnswer = [{
     id: "10",
     question: "Викликати компілятор з командного рядка в LESS",
     answer: "$ lessc styles.less"
 }];
 
-//quiz
+//quiz generator
+//setting question and options
 function quizCreator() {
     //тест для radio
     let radioTests = [test1, test2, test3];
     let ansDivs = [ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10, ans11, ans12, ans13, ans14, ans15,
         ans16, ans17, ans18, ans19, ans20, ans21];
     k = 0;
+
     for (i = 0; i < quizRadioQuestionAndAnswer.length; i++) {
         let current = quizRadioQuestionAndAnswer[i];
         current.options.sort(() => Math.random() - 0.5);
@@ -192,36 +201,39 @@ function quizCreator() {
 }
 
 quizCreator();
+
 let score = 0.0;
+
 function displayResult() {
     score = 0.0;
-    //Результат першого завдання
-    var ans1 = document.getElementsByName(`option1`);
-    for (i = 0; i < ans1.length; i++) {
-        if (ans1[i].checked && ans1[i].value === quizRadioQuestionAndAnswer[0].correct) {
-            console.log(`Test 1: right ${ans1[i].value}`)
-            score++;
+    //TODO Пересмотреть, неправильно считает радио
+    getRadioScore();
+    getCheckBoxScore();
+    getOptionScore();
+    getDragAndDropScore();
+    getTextAreaScore();
+
+    if (fullName != null && group != null)
+        alert(`Total score of ${fullName.value} from ${group.value}: ${score} of 10 points`);
+    else
+        alert(`Total score of Unknown user: ${score} of 10 points`);
+}
+
+function getRadioScore() {
+    //Результат першого-третього завдання
+    for (i = 0; i < 3; i++) {
+        var option = `option${i + 1}`;
+        var ans = document.getElementsByName(option);
+        for (j = 0; j < 3; j++) {
+            if (ans[j].checked && ans[j].value === quizRadioQuestionAndAnswer[i].correct) {
+                console.log(`Test ${i + 1}: right ${ans[j].value}`)
+                score++;
+            }
         }
     }
+}
 
-    //Результат другого завдання
-    var ans2 = document.getElementsByName(`option2`);
-    for (i = 0; i < ans2.length; i++) {
-        if (ans2[i].checked && ans2[i].value === quizRadioQuestionAndAnswer[1].correct) {
-            console.log(`Test 2: right ${ans2[i].value}`)
-            score++;
-        }
-    }
-
-    //Результат третього завдання
-    var ans3 = document.getElementsByName(`option3`);
-    for (i = 0; i < ans3.length; i++) {
-        if (ans3[i].checked && ans3[i].value === quizRadioQuestionAndAnswer[2].correct) {
-            console.log(`Test 3: right ${ans3[i].value}`)
-            score++;
-        }
-    }
-
+function getCheckBoxScore() {
     //Результат четвертого-п'ятого завдання
     let chooseNumber = 9;
     let countOfRight = 0;
@@ -244,7 +256,9 @@ function displayResult() {
 
         countOfRight = 0;
     }
+}
 
+function getOptionScore() {
     //Результат шостого-сьомого завдання
     for (i = 0; i < 2; i++) {
         let current = quizOptionQuestionAndAnswer[i];
@@ -255,7 +269,9 @@ function displayResult() {
             score++;
         }
     }
+}
 
+function getDragAndDropScore() {
     //Результат восьмого-дев'ятого завдання
     let divNumber = 0;
     ans = 0;
@@ -277,19 +293,13 @@ function displayResult() {
         }
         ans = 0;
     }
+}
 
+function getTextAreaScore() {
     //Результат десятого завдання
     let textArea = document.getElementById("text-area");
     if (textArea.value === quizTextAreaQuestionAndAnswer[0].answer) {
         console.log(`Test 10 answer: ${textArea.value}`);
         score++;
     }
-
-    let fullName = document.getElementById("fullName").value;
-    let group = document.getElementById("group").value;
-
-    if (fullName != null && group != null)
-        alert(`Total score of ${fullName} from ${group}: ${score} of 10 points`);
-    else
-        alert(`Total score of Unknown user: ${score} of 10 points`);
 }

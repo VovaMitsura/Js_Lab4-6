@@ -1,6 +1,4 @@
 //sending result to gmail
-let fullName = document.getElementById("fullName");
-let group = document.getElementById("group");
 let send = document.getElementById("send-btn");
 
 
@@ -9,10 +7,12 @@ function sendEmail(e) {
     console.log(`${fullName.value} and ${group.value}`);
     let formData = {
         name: fullName.value,
-        group:`${fullName.value} ${group.value}`,
+        group: `${fullName.value} ${group.value}`,
         subject: "Less & Sass testMail",
         message: `${fullName.value} got ${score} of 10 points`
     }
+
+    console.log(`Email: ` + formData);
 
     send.value = "Sending Message..."
 

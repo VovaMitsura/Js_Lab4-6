@@ -1,4 +1,3 @@
-
 //функция для захвата данных из тегов формы и синтеза JSON-обьекта
 function toJSONString() {
     var obj = {
@@ -15,7 +14,6 @@ function sendTelegram(e) {
     e.preventDefault();
     //получаем данные из формы
     const json = toJSONString();
-    console.log(json);
     //создаем соединение
     const formReq = new XMLHttpRequest();
     formReq.open(`POST`, `/telegram`, true);

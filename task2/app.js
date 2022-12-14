@@ -21,6 +21,8 @@ app.listen(port, () => {
 
 app.post("/gmail", (req, res) => {
 
+    console.log("start posting email");
+
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -43,6 +45,7 @@ app.post("/gmail", (req, res) => {
             console.log(error);
             res.send("error")
         } else {
+            console.log(responose);
             console.log("Email Sent");
             res.send("success")
         }
@@ -50,7 +53,7 @@ app.post("/gmail", (req, res) => {
 });
 
 app.post("/telegram", (req, res) => {
-    console.log("start posting");
+    console.log("start posting tg message");
     const config = require(`D:\\KPI\\WEB\\finallab\\task2\\config\\config.json`);
     let http = require(`request`);
     let reqBody = req.body;
@@ -68,10 +71,8 @@ app.post("/telegram", (req, res) => {
     fields.forEach(field => {
         msg += field + `\n`;
     });
-    console.log("MSG URI: " + msg);
     //кодируем результат в текст, понятный адресной строке
     msg = encodeURI(msg);
-    console.log("MSG URi: " + msg);
     //делаем запрос
     //делаем запрос
     http.post(`https://api.telegram.org/bot${config.telegram.token}/sendMessage?chat_id=${config.telegram.chat}&parse_mode=html&text=${msg}`, function (error, response, body) {
