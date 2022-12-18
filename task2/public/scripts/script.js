@@ -46,7 +46,7 @@ const quizRadioQuestionAndAnswer = [{
     correct: ".less"
 }, {
     id: "3",
-    question: "Для чого використовується функція @extend у Sass?",
+    question: "Для чого використовується функція @extend у SCSS?",
     options: ["@extend забезпечує простий спосіб дозволити селектору успадкувати стилі іншого", "підключає стронню бібліотеку",
         "забезпечує сумісність з CSS"],
     correct: "@extend забезпечує простий спосіб дозволити селектору успадкувати стилі іншого"
@@ -60,10 +60,10 @@ const quizCheckBoxQuestionAndAnswer = [{
     correct: ["hue", "saturation"]
 }, {
     id: "5",
-    question: "Перелічіть відмінності між LESS і Sass?",
-    options: ["Sass кодується в Ruby і, таким чином, обробляється на стороні сервера", "В обох можна оголошувати змінні",
+    question: "Перелічіть відмінності між LESS і SCSS?",
+    options: ["SCSS кодується в Ruby і, таким чином, обробляється на стороні сервера", "В обох можна оголошувати змінні",
         "LESS використовує JavaScript і обробляється на стороні клієнта"],
-    correct: ["Sass кодується в Ruby і, таким чином, обробляється на стороні сервера", "LESS використовує JavaScript і обробляється на стороні клієнта"]
+    correct: ["SCSS кодується в Ruby і, таким чином, обробляється на стороні сервера", "LESS використовує JavaScript і обробляється на стороні клієнта"]
 }];
 
 //quiz array for options
@@ -83,11 +83,11 @@ const quizOptionQuestionAndAnswer = [{
 //quiz array for drag and drop
 const quizDragAndDropQuestionAndAnswer = [{
     id: "8",
-    question: ["Перетягність лого Sass", "Перетягність лого Less"],
+    question: ["Перетягність лого SCSS", "Перетягність лого Less"],
     correct: ["value2", "value1"]
 }, {
     id: "9",
-    question: ["Синтаксис Less", "Синтаксис Sass"],
+    question: ["Синтаксис Less", "Синтаксис SCSS"],
     correct: ["value3", "value4"]
 }];
 

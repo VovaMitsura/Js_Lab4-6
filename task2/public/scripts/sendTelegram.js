@@ -1,10 +1,10 @@
-//функция для захвата данных из тегов формы и синтеза JSON-обьекта
+//перетворюємо дані з форми в об'єкт json
 function toJSONString() {
     var obj = {
         username: fullName.value,
         groupId: group.value,
         test: "Less AND Sass",
-        points: score
+        points: `${score} of 10`
     };
     console.log(obj);
     return JSON.stringify(obj);
@@ -12,15 +12,12 @@ function toJSONString() {
 
 function sendTelegram(e) {
     e.preventDefault();
-    //получаем данные из формы
+    //отримуємо дані з форми
     const json = toJSONString();
-    //создаем соединение
+    //створюємо з'єднання
     const formReq = new XMLHttpRequest();
     formReq.open(`POST`, `/telegram`, true);
-    ///////////////////////////////////
-    /////////////SweetAlert//////////
-    ///////////////////////////////////
-    //обрабатываем ответ сервера
+    //оброблюємо відповідь з сервера
     formReq.onload = function (oEvent) {
         if (formReq.status === 200) {
             console.log("Successfully send");
@@ -29,7 +26,8 @@ function sendTelegram(e) {
             console.log("Got an error");
         }
     }
+    //встановлюємо хедер
     formReq.setRequestHeader('Content-Type', 'application/json')
-    //отправляем
+    //відправляємо
     formReq.send(json)
 }

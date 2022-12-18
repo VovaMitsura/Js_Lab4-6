@@ -1,28 +1,28 @@
-//sending result to gmail
+//відправка результату на gmail
 let send = document.getElementById("send-btn");
 
 
 function sendEmail(e) {
     e.preventDefault();
-    console.log(`${fullName.value} and ${group.value}`);
+    //отримуємо дані з форми
     let formData = {
         name: fullName.value,
-        group: `${fullName.value} ${group.value}`,
-        subject: "Less & Sass testMail",
+        group: `${group.value}`,
+        subject: "LESS & SCSS test",
         message: `${fullName.value} got ${score} of 10 points`
     }
 
-    console.log(`Email: ` + formData);
-
     send.value = "Sending Message..."
 
-
+    //створюємо з'єднання
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/gmail");
+    //встановлюємо хедер
     xhr.setRequestHeader("content-type", "application/json");
+    //оброблюємо відповідь з сервера
     xhr.onload = () => {
         console.log(xhr.responseText);
-        if (xhr.responseText == "success") {
+        if (xhr.responseText === "success") {
             name.value = "";
             subject.value = "";
             message.value = "";
@@ -31,5 +31,6 @@ function sendEmail(e) {
             send.value = "Something Went Wrong!"
         }
     }
+    //відправляємо
     xhr.send(JSON.stringify(formData));
 }

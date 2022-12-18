@@ -1,3 +1,4 @@
+//сервер
 require('dotenv').config()
 const express = require("express");
 const nodemailer = require(`nodemailer`);
@@ -10,19 +11,24 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 const user = process.env.GMAIL_USER;
 const pass = process.env.PASSWORD;
+const toEmail = process.env.GMAIL_TO;
 
+//при запросі get http://localhost:3000/ відправити html
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html")
 })
 
+//створюємо сервер
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}...`);
 });
 
+//при запросі post http://localhost:3000/gmail, провести наступні дії
 app.post("/gmail", (req, res) => {
 
     console.log("start posting email");
 
+    //зберігає конфігурацію SMTP
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -33,15 +39,16 @@ app.post("/gmail", (req, res) => {
 
     console.log(`Message from ${req.body.group}: ${req.body.subject}`);
 
+    //необхідна інформація по повідомленню
     const mailOptions = {
         from: req.body.email,
-        to: "vovamitsura@gmail.com",
-        subject: `Message from ${req.body.group}: ${req.body.subject}`,
-        text: req.body.message
+        to: toEmail,
+        subject: `${req.body.name}, ${req.body.group}, ЛР JS2022`,
+        text: `${req.body.subject}; ${req.body.message}`
     }
 
     transporter.sendMail(mailOptions, (error, responose) => {
-        if(error) {
+        if(error) { //оброблюємо відповідь
             console.log(error);
             res.send("error")
         } else {
@@ -52,31 +59,31 @@ app.post("/gmail", (req, res) => {
     });
 });
 
+//при запросі post http://localhost:3000/gmail, провести наступні дії
 app.post("/telegram", (req, res) => {
     console.log("start posting tg message");
     const config = require(`D:\\KPI\\WEB\\finallab\\task2\\config\\config.json`);
     let http = require(`request`);
     let reqBody = req.body;
-    //console.log(reqBody);
-    //каждый элемент обьекта запихиваем в массив
+    //записуємо елементи запроса в масив
     let fields = [
         `<b>Name</b>: ` + reqBody.username,
+        `<b>Group</b>: ` + reqBody.groupId,
         `<b>Test</b>: ` + reqBody.test,
-        `<b>Points</b> ` + reqBody.points
+        `<b>Points</b>: ` + reqBody.points
     ];
     console.log(fields);
 
     let msg = ``;
-    //проходимся по массиву и склеиваем все в одну строку
+    //записуємо елементи масиву в одну строку
     fields.forEach(field => {
         msg += field + `\n`;
     });
-    //кодируем результат в текст, понятный адресной строке
+    //кодуємо результати в текст, зрозумілий адресній строці
     msg = encodeURI(msg);
-    //делаем запрос
-    //делаем запрос
+    //робимо запрос
     http.post(`https://api.telegram.org/bot${config.telegram.token}/sendMessage?chat_id=${config.telegram.chat}&parse_mode=html&text=${msg}`, function (error, response, body) {
-        //не забываем обработать ответ
+        //оброблюємо відповідь
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
